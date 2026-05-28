@@ -910,7 +910,7 @@ function initMessengerIntent(){
                     evt.preventDefault();
                     evt.stopPropagation();
                 }
-                openContactIntentModal(type, targetUrl);
+                try { if (window.__siteStatsTracker && typeof window.__siteStatsTracker.track === 'function') { window.__siteStatsTracker.track({channel: type, moduleName: 'direct-click', buttonLabel: type}).catch(function(){}); } } catch (e) {} window.open(targetUrl, '_blank');
             };
             btn.addEventListener('click', openModal);
             btn.addEventListener('keydown', evt => {
